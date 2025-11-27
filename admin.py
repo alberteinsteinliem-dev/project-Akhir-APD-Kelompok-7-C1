@@ -98,7 +98,7 @@ def tambah_lomba():
     pause()
 
 def hapus_lomba():
-    global lomba
+    global lomba, peserta
     tampil_lomba(lomba)
     if not lomba:
         print("Tidak ada lomba untuk dihapus.")
@@ -120,8 +120,13 @@ def hapus_lomba():
             break
 
     if id_hapus is not None:
+        # Hapus lomba
         del lomba[id_hapus]
-        print("Lomba berhasil dihapus!")
+        
+        # Hapus semua peserta yang mendaftar lomba ini
+        peserta = [p for p in peserta if p["lomba"] != nama_pilih]
+        
+        print("Lomba dan seluruh pendaftarnya berhasil dihapus!")
     else:
         print("Lomba tidak ditemukan.")
     pause()
